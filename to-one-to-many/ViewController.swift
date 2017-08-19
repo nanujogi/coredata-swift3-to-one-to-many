@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     var myclass = MyClass()
     
     var currentdept:Account!
+    
     var user:User!
     
     override func viewDidLoad() {
@@ -25,8 +26,8 @@ class ViewController: UIViewController {
         
         // Create Account
         
-        mysetup() // adds string example "IT Head" in Account Entity for department attribute
-        createuser() // creating an user for testing
+ //       mysetup() // adds string example "IT Head" in Account Entity for department attribute
+//        createuser() // creating an user for testing
         
         myfetch()   // lets fetch that data which we added.
     }
@@ -81,6 +82,8 @@ class ViewController: UIViewController {
         // will get an department of an specific user.
         getdepartementofanuser()
         
+        // trial error not working
+//        updatedepartmentofanuser()
         
     } // end of myfetch
     
@@ -99,11 +102,9 @@ class ViewController: UIViewController {
             for data in getdata {
                 
                 // let us unwrap the optionals
-                if let unwrap_account_departement = data.account?.department {
-                    print ("User = \(unwrap_account_departement)")
-                    
+                if let unwrap_account_department = data.account?.department {
+                    print ("User = \(unwrap_account_department)")
                 }
-                
             } // end of for data in getdata
             
         } catch let error as NSError {
@@ -158,6 +159,43 @@ class ViewController: UIViewController {
         
     } // getalluserfromaccountdepartment
     
+    // ------ trial error codes Not working 
+    // trying to change the relationship of an user from existing to a new one in Account entity already like "Purchase"
+    
+    func updatedepartmentofanuser() {
+        
+        print ("\nupdate the department of an specific user")
+        
+        // retrieves an department of an user
+        do {
+            let fetchuser = NSFetchRequest<User>(entityName: "User")
+            let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(User.firstName), "nanu")
+            fetchuser.predicate = predicate
+            
+            let getdata = try self.coreDataStack.managedContext.fetch(fetchuser)
+            
+            for data in getdata {
+                // let us unwrap the optionals
+                if let unwrap_account_department = data.account?.department {
+                    print ("User = \(unwrap_account_department)")
+                    
+                    // below code is updateing the Account entity department value itself.
+                    // i.e. all IT Head value users will have this new value as its department.
+                    
+                  //  data.account?.department = "Purchase"
+                  //  coreDataStack.saveContext()
+                    
+                   //  data.account?.mutableSetValue(forKey: "department").add("Purchase")
+                }
+                
+            } // end of for data in getdata
+            
+        } catch let error as NSError {
+            print("Fetching error: \(error), \(error.userInfo)")
+        }
+    }
+    
+    // ----- end of trial and error code
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
