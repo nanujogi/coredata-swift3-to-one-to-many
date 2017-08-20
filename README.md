@@ -92,7 +92,14 @@ next find myfetch() function & uncomment below one line of updatedepartmentofanu
 
 Now run the program & it will first delete the record & then will re-insert it with different department.
 
-Question: If you know how to update it please enlighten
+To varify it you need to comment the above uncomment line i.e.
+
+```swift
+// updatedepartmentofanuser() <--- add an comment to this line
+```
+RUN it & you'll see that now we only have "Vinod Kamath" as IT Head.
+
+_**Question:If you know how to update it please enlighten**_
 
 Cheers
 
