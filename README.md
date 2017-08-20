@@ -27,28 +27,42 @@ Program is straight forward.
 Follow below steps to understand it.
 
 Compile & run it. It will create an record in coredata with 
+```swift
 user.firstName = "Nanu"
 user.lastName = "Jogi"
+```
+
 Now stop the stimulator.
 
-Next modify user.firstName = "Vinod"
+Next modify 
+
+```swift
+user.firstName = "Vinod"
 user.lastName = "Kamath"
-Now run again.
-Now stop the stimulator
+```
+Now run again. & next stop the stimulator.
 
 Next modify 
-  let dept = "IT Head" inside the func mysetup() to
-  let dept = "Purchase"
+
+```swift
+  let dept = "IT Head" // inside the func mysetup() 
+  to
   
-Next modify user.firstName = "Manoj"
+  let dept = "Purchase"
+```
+
+Next modify 
+
+```swift
+user.firstName = "Manoj"
 user.lastName = "Shah"
+```
 Now run again.
-
 You'll see something like this below
-
+```swift
 retrieveing all users from account department which belongs to 'it'
-User = Nanu Jogi
 User = Vinod Kamath
+User = Nanu Jogi
 
 retrieveing all department from Account entity
 IT Head
@@ -56,22 +70,28 @@ Purchase
 
 we get the department of an specific user
 User = IT Head
+```
+Now what I wanted was to change the department of "Nanu" from IT Head to Purchase but was just not able to do it.
 
-Now what I wanted was to change the department of "Nanu" to "Purchase" but was just not able to do it.
-So settled as of now with deleteing it & then recreating it with department "Purchase" 
+So settled as of now with deleteing it and then recreating it with department "Purchase". 
+
 So see this you need to do below steps.
 
+```swift
 // Create Account
-add comments ---->   //    mysetup() // adds string example "IT Head" in Account Entity for department attribute
-add comments----->   //    createuser() // creating an user for testing
+ //    mysetup() 
+ //    createuser()  
+```
 
 next find myfetch() function & uncomment below one line
-// trial error working
-    updatedepartmentofanuser()
-    
+
+```swift
+ updatedepartmentofanuser()
+```
+
 Now run the program & it will first delete the record & then will re-insert it with different department.
 
-Question: If you know how to update it **please enlighten**
+Question: If you know how to update it please enlighten
 
 Cheers
 
