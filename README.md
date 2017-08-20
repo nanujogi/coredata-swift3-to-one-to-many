@@ -76,7 +76,7 @@ Now what I wanted was to change the department of "Nanu" from IT Head to Purchas
 
 So settled as of now with deleteing it and then recreating it with department "Purchase". 
 
-So see this you need to do below steps.
+So see this you need to do below steps. Add comments to mysetup() and createuser() functions. So it will not execute. We don't need them for now.
 
 ```swift
 // Create Account
@@ -84,7 +84,7 @@ So see this you need to do below steps.
  //    createuser()  
 ```
 
-next find myfetch() function & uncomment below one line
+next find myfetch() function & uncomment below one line of updatedepartmentofanuser() function.
 
 ```swift
  updatedepartmentofanuser()
