@@ -22,6 +22,7 @@ Program is straight forward.
 - get all the users of an specific department from Account Entity
 - get all the department from Account Entity
 - get an department of an specific user.
+- updatedepartmentofanuser
 
 **To update the department of an existing user**
 Follow below steps to understand it.
