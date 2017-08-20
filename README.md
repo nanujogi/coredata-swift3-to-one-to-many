@@ -23,5 +23,62 @@ Program is straight forward.
 - get all the department from Account Entity
 - get an department of an specific user.
 
-TODO: to update the department of an existing user.
+**To update the department of an existing user**
+Follow below steps to understand it.
+
+Compile & run it. It will create an record in coredata with 
+user.firstName = "Nanu"
+user.lastName = "Jogi"
+Now stop the stimulator.
+
+Next modify user.firstName = "Vinod"
+user.lastName = "Kamath"
+Now run again.
+Now stop the stimulator
+
+Next modify 
+  let dept = "IT Head" inside the func mysetup() to
+  let dept = "Purchase"
+  
+Next modify user.firstName = "Manoj"
+user.lastName = "Shah"
+Now run again.
+
+You'll see something like this below
+
+retrieveing all users from account department which belongs to 'it'
+User = Nanu Jogi
+User = Vinod Kamath
+
+retrieveing all department from Account entity
+IT Head
+Purchase
+
+we get the department of an specific user
+User = IT Head
+
+Now what I wanted was to change the department of "Nanu" to "Purchase" but was just not able to do it.
+So settled as of now with deleteing it & then recreating it with department "Purchase" 
+So see this you need to do below steps.
+
+// Create Account
+add comments ---->   //    mysetup() // adds string example "IT Head" in Account Entity for department attribute
+add comments----->   //    createuser() // creating an user for testing
+
+next find myfetch() function & uncomment below one line
+// trial error working
+    updatedepartmentofanuser()
+    
+Now run the program & it will first delete the record & then will re-insert it with different department.
+
+Question: If you know how to update it **please enlighten**
+
+Cheers
+
+
+  
+  
+  
+
+
 
