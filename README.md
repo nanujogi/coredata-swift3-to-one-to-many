@@ -1,5 +1,5 @@
 Swift 3 to-one to-many relationship.
-Wanted to understand how relationship works hence created this small code for to-on to-many swift relationship.
+Wanted to understand how relationship works hence created this small code for to-one to-many swift relationship.
 
 Created two entity Account & User
 
