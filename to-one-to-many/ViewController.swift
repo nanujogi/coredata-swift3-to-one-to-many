@@ -26,8 +26,8 @@ class ViewController: UIViewController {
         
         // Create Account
         
-        mysetup() // adds string example "IT Head" in Account Entity for department attribute
-       createuser() // creating an user for testing
+//        mysetup() // adds string example "IT Head" in Account Entity for department attribute
+//       createuser() // creating an user for testing
         
         myfetch()   // lets fetch that data which we added.
         
@@ -60,8 +60,8 @@ class ViewController: UIViewController {
         user = User(context: coreDataStack.managedContext)
         
         // Configure User
-        user.firstName = "Nanu"
-        user.lastName = "Jogi"
+        user.firstName = "Manoj"
+        user.lastName = "Shah"
         
         // Important: We have to insert the new user to Account entity.
         currentdept?.addToUsers(user) // OR below way it is one and the same.
@@ -84,8 +84,13 @@ class ViewController: UIViewController {
         // will get an department of an specific user.
         getdepartementofanuser()
         
-        // trial error working
+        // This will update an department of an user.
 //        updatedepartmentofanuser()
+        
+       // Getting an User from Account seems like an Daunthing task.
+        // It works but tooo much of codes. just uncomment below line
+
+        //        caniknowUserfromAccount()
         
     } // end of myfetch
     
@@ -220,17 +225,44 @@ class ViewController: UIViewController {
         }
         
     } // end of updatedepartmentofanuser
+
+    // @NSManaged public var users: NSOrderedSet?
+    // To fetch the data from an NSORderedSet
     
+    // To get an User.firstName & User.lastName from Account Entity seems to be a lot of work
+    // If you have better ways just let me know. 
+    
+    // As of now settled with below code  for an specific department only.
+    
+    // If we want to know all the Users of all the Department seems like an Daunting Task!
     
     func caniknowUserfromAccount() {
         let accountrequest = NSFetchRequest<Account>(entityName: "Account")
-        
+        let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.department), "purchase")
+        accountrequest.predicate = predicate
+
         do {
             let getdata = try self.coreDataStack.managedContext.fetch(accountrequest)
-            
+
             for data in getdata {
-                if let departments = data.department { //unwrap the optional
+                if let departments = data.department,
+                    let counter = data.users?.count { //unwrap the optional
                     print ("\(departments)")
+                    print("\(counter)")
+                    var mycount = 0
+                    while mycount < counter {
+                        if let names = data.users?[mycount] {
+                            print ((names as AnyObject).firstName!!)
+                            print ((names as AnyObject).lastName!!)
+                            mycount += 1
+                        }
+                    }
+//                    if let names = data.users?[0]
+//                    {
+//                        print ((names as AnyObject).firstName!!)
+//                    }
+//                    print (data.users?[0])
+//                    print (data.users?[1])
                 }
             } // end of for data in getdata
             
