@@ -177,19 +177,7 @@ class ViewController: UIViewController {
 
         do {
             let getdata = try coreDataStack.managedContext.fetch(fetchdepartment)
-            
-            // Big bunch of trial error whats inside this & what's inside that.
-            // If we modify this it modifies all the department.
-//            
-//            print (getdata.first?.firstName)
-//            print (getdata.first?.lastName)
-            
-//            // getdata.first?.account?.department = "Purchase"
-//            getdata.first?.firstName = "Nanu"
-//            getdata.first?.lastName = "Jogi"
-//            getdata.first?.account?.department = "nil"
-//          coreDataStack.saveContext()
-            
+
             for data in getdata {
                 // Could not modify the existing user to an new department. so first deleteting it & then adding it back with different department.
                 
@@ -210,14 +198,7 @@ class ViewController: UIViewController {
                 
                 // Save the managed object context
                 coreDataStack.saveContext()
-//
-//                    print (data.firstName)
-//                    print (data.lastName)
-//                    print (data.account?.department)
-                
-//
-//                    //   data.account?.department = "IT Head"
-//                    //     coreDataStack.saveContext()
+
             }
             
         } catch let error as NSError {
@@ -257,12 +238,7 @@ class ViewController: UIViewController {
                             mycount += 1
                         }
                     }
-//                    if let names = data.users?[0]
-//                    {
-//                        print ((names as AnyObject).firstName!!)
-//                    }
-//                    print (data.users?[0])
-//                    print (data.users?[1])
+
                 }
             } // end of for data in getdata
             
@@ -270,8 +246,7 @@ class ViewController: UIViewController {
             print("Fetching error: \(error), \(error.userInfo)")
         }
     }
-    
-    // ----- end of trial and error code
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
