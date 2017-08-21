@@ -26,8 +26,8 @@ class ViewController: UIViewController {
         
         // Create Account
         
-//        mysetup() // adds string example "IT Head" in Account Entity for department attribute
-//       createuser() // creating an user for testing
+        //        mysetup() // adds string example "IT Head" in Account Entity for department attribute
+        //       createuser() // creating an user for testing
         
         myfetch()   // lets fetch that data which we added.
         
@@ -85,12 +85,12 @@ class ViewController: UIViewController {
         getdepartementofanuser()
         
         // This will update an department of an user.
-//        updatedepartmentofanuser()
+        //        updatedepartmentofanuser()
         
-       // Getting an User from Account seems like an Daunthing task.
+        // Getting an User from Account seems like an Daunthing task.
         // It works but tooo much of codes. just uncomment below line
-
-        //        caniknowUserfromAccount()
+        
+        caniknowUserfromAccount()
         
     } // end of myfetch
     
@@ -101,7 +101,7 @@ class ViewController: UIViewController {
         let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(User.firstName), "nanu")
         fetchuser.predicate = predicate
         do {
-
+            
             // retrieves an department of an user
             let getdata = try self.coreDataStack.managedContext.fetch(fetchuser)
             
@@ -121,7 +121,7 @@ class ViewController: UIViewController {
     func getalldepartmentofaccountentity() {
         
         print ("\nretrieveing all department from Account entity")
-
+        
         // retrieve all department from Account entity
         let accountrequest = NSFetchRequest<Account>(entityName: "Account")
         
@@ -142,12 +142,12 @@ class ViewController: UIViewController {
     
     func getalluserfromaccountdepartment() {
         
-        print ("\nretrieveing all users from account department which belongs to 'it'")
+        print ("\nretrieveing all users from account department which belongs to 'it' via User Entity")
         let userrequest = NSFetchRequest<User>(entityName: "User")
         let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(User.account.department), "it")
         userrequest.predicate = predicate
         do {
-
+            
             // retrieves all user from an Account entity department attribute
             let getdata = try self.coreDataStack.managedContext.fetch(userrequest)
             
@@ -168,16 +168,16 @@ class ViewController: UIViewController {
     
     // Was trying to change the relationship of an user from existing to a new one in Account entity already like "Purchase" but was not able to find an solution.
     
-    // So settled with delete it & then recreated the User with different department 
+    // So settled with delete it & then recreated the User with different department
     
     func updatedepartmentofanuser() {
         let fetchdepartment = NSFetchRequest<User>(entityName: "User")
         let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(User.firstName), "nanu")
         fetchdepartment.predicate = predicate
-
+        
         do {
             let getdata = try coreDataStack.managedContext.fetch(fetchdepartment)
-
+            
             for data in getdata {
                 // Could not modify the existing user to an new department. so first deleteting it & then adding it back with different department.
                 
@@ -198,7 +198,7 @@ class ViewController: UIViewController {
                 
                 // Save the managed object context
                 coreDataStack.saveContext()
-
+                
             }
             
         } catch let error as NSError {
@@ -206,39 +206,49 @@ class ViewController: UIViewController {
         }
         
     } // end of updatedepartmentofanuser
+    
+    /*
+     Note: Easier approach for this is function already written above in ---> getalluserfromaccountdepartment()
+     Wanted to try to reach same thing via Account Entity & learnt to write below code.
 
-    // @NSManaged public var users: NSOrderedSet?
-    // To fetch the data from an NSORderedSet
-    
-    // To get an User.firstName & User.lastName from Account Entity seems to be a lot of work
-    // If you have better ways just let me know. 
-    
-    // As of now settled with below code  for an specific department only.
-    
-    // If we want to know all the Users of all the Department seems like an Daunting Task!
+     @NSManaged public var users: NSOrderedSet?
+     To fetch the data from an NSORderedSet
+     
+     To get all the User.firstName & User.lastName from Account Entity seems to be a lot of work
+     As of now settled with below code  for an specific department only.
+     */
     
     func caniknowUserfromAccount() {
+        
+        print ("\nretrieveing all users from account department which belongs to 'it' via Account Entity")
+        
         let accountrequest = NSFetchRequest<Account>(entityName: "Account")
-        let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.department), "purchase")
+        let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.department), "it")
         accountrequest.predicate = predicate
-
+        
         do {
+            // fetch it
             let getdata = try self.coreDataStack.managedContext.fetch(accountrequest)
-
             for data in getdata {
                 if let departments = data.department,
                     let counter = data.users?.count { //unwrap the optional
-                    print ("\(departments)")
-                    print("\(counter)")
+                    print ("department = \(departments)")
+//                    print("\(counter)")
+                    
+                    // here we loop to get different firstName & lastName of the department.
                     var mycount = 0
                     while mycount < counter {
                         if let names = data.users?[mycount] {
-                            print ((names as AnyObject).firstName!!)
-                            print ((names as AnyObject).lastName!!)
+                            if let usrfirst = (names as AnyObject).firstName?!,
+                               let usrlast = (names as AnyObject).lastName?! {
+                                print ("User = \(usrfirst) \(usrlast)")
+                            }
+//                            print ((names as AnyObject).firstName!!)
+//                            print ((names as AnyObject).lastName!!)
                             mycount += 1
                         }
                     }
-
+                    
                 }
             } // end of for data in getdata
             
@@ -246,7 +256,7 @@ class ViewController: UIViewController {
             print("Fetching error: \(error), \(error.userInfo)")
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
