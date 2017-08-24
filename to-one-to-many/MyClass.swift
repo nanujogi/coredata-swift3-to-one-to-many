@@ -12,6 +12,8 @@ import SystemConfiguration
 
 public class MyClass {
     
+    // From Hacking with Swift by Paul Hudson all his books rocks!
+
     // MARK: - Get Documents directory path
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -21,6 +23,7 @@ public class MyClass {
         return documentsDirectory
         
     } // end of getDocumentsDirectory
+    
     
     // MARK: - Get date from String
     func GetDateFromString(DateStr: String)-> Date {
@@ -35,6 +38,8 @@ public class MyClass {
         return date!
     }
     
+    // From Hacking with Swift by Paul Hudson all his books rocks!
+
     // MARK: - Make Attributed String
     func makeAttributedString (title: String, subtitle: String)-> NSAttributedString {
         
@@ -83,6 +88,7 @@ public class MyClass {
     
 } // end of MyClass
 
+// Thank you Jacob Bart for your codes it rocks at github!
 // MARK: - My Alert
 extension UIViewController {
     
@@ -92,11 +98,3 @@ extension UIViewController {
         present(ac, animated: true)
     } // end of myalert
 }
-
-
-
-
-
-
-
-
