@@ -214,22 +214,30 @@ class ViewController: UIViewController {
      @NSManaged public var users: NSOrderedSet?
      To fetch the data from an NSORderedSet
      
-     To get all the User.firstName & User.lastName from Account Entity seems to be a lot of work
+     Done now we have all the Users from Account Entity their first name & lastname
      As of now settled with below code  for an specific department only.
      */
     
     func caniknowUserfromAccount() {
         
-        print ("\nretrieveing all users from account department which belongs to 'it' via Account Entity")
+        print ("\nretrieveing all users from entity Account attribute department")
         
         let accountrequest = NSFetchRequest<Account>(entityName: "Account")
-        let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.department), "it")
-        accountrequest.predicate = predicate
+        let predicate1 = NSPredicate(format: "%K != nil", #keyPath(Account.department))
+        
+  //      let predicate2 = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.users), "nanu")
+  //      let predicateCompound = NSCompoundPredicate.init(type: .or, subpredicates: [predicate1])
+
+//        let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.department), "it")
+        accountrequest.predicate = predicate1
         
         do {
             // fetch it
             let getdata = try self.coreDataStack.managedContext.fetch(accountrequest)
+      //      print (getdata)
             for data in getdata {
+           //    print (data)
+                
                 if let departments = data.department,
                     let counter = data.users?.count { //unwrap the optional
                     print ("department = \(departments)")
@@ -264,3 +272,19 @@ class ViewController: UIViewController {
     
 }
 
+
+/*
+ 
+ 
+ Swift 3 - OR
+ let predicate1 = NSPredicate(format: "X == 1")
+ let predicate2 = NSPredicate(format: "Y == 2")
+ let predicateCompound = NSCompoundPredicate.init(type: .or, subpredicates: [predicate1,predicate2])
+
+ Swift 3 - AND
+ 
+ let predicate1 = NSPredicate(format: "X == 1")
+ let predicate2 = NSPredicate(format: "Y == 2")
+ let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: [predicate1,predicate2])
+ 
+ */
