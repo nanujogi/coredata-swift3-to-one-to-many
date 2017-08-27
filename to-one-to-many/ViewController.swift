@@ -60,8 +60,8 @@ class ViewController: UIViewController {
         user = User(context: coreDataStack.managedContext)
         
         // Configure User
-        user.firstName = "Manoj"
-        user.lastName = "Shah"
+        user.firstName = "Nanu"
+        user.lastName = "Jogi"
         
         // Important: We have to insert the new user to Account entity.
         currentdept?.addToUsers(user) // OR below way it is one and the same.
@@ -210,7 +210,7 @@ class ViewController: UIViewController {
     /*
      Note: Easier approach for this is function already written above in ---> getalluserfromaccountdepartment()
      Wanted to try to reach same thing via Account Entity & learnt to write below code.
-
+     
      @NSManaged public var users: NSOrderedSet?
      To fetch the data from an NSORderedSet
      
@@ -219,43 +219,47 @@ class ViewController: UIViewController {
      */
     
     func caniknowUserfromAccount() {
-        
         print ("\nretrieveing all users from entity Account attribute department")
-        
         let accountrequest = NSFetchRequest<Account>(entityName: "Account")
         let predicate1 = NSPredicate(format: "%K != nil", #keyPath(Account.department))
-        
-  //      let predicate2 = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.users), "nanu")
-  //      let predicateCompound = NSCompoundPredicate.init(type: .or, subpredicates: [predicate1])
-
-//        let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.department), "it")
         accountrequest.predicate = predicate1
+        //      let predicate2 = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.users), "nanu")
+        //      let predicateCompound = NSCompoundPredicate.init(type: .or, subpredicates: [predicate1])
+        //      let predicate = NSPredicate(format: "%K CONTAINS[c] %@", #keyPath(Account.department), "it")
         
         do {
             // fetch it
             let getdata = try self.coreDataStack.managedContext.fetch(accountrequest)
-      //      print (getdata)
             for data in getdata {
-           //    print (data)
-                
+                //    print (data)
                 if let departments = data.department,
-                    let counter = data.users?.count { //unwrap the optional
-                    print ("department = \(departments)")
-//                    print("\(counter)")
+                    let counter = data.users?.count { // Get the number of records in User entity for this particular department.
+                    print ("\ndepartment = \(departments)")
+                    //     print("\(counter)")
                     
                     // here we loop to get different firstName & lastName of the department.
                     var mycount = 0
                     while mycount < counter {
+                        
+                        // Just another try to get unwrapped names from User
+//                        let mytry = data.users?[mycount] as? AnyObject
+//                        if let getunwrappedfirstname = mytry?.firstName,
+//                            let getunwrappedlastname = mytry?.lastName {
+//                            print (getunwrappedfirstname!)
+//                            print (getunwrappedlastname!)
+//                            
+//                        }
+                        
                         if let names = data.users?[mycount] {
-                            if let usrfirst = (names as AnyObject).firstName?!,
-                               let usrlast = (names as AnyObject).lastName?! {
+                            if let usrfirst = (names as AnyObject).firstName?!, // unwrap the optionals
+                                let usrlast = (names as AnyObject).lastName?! { // unwrap the optionals
                                 print ("User = \(usrfirst) \(usrlast)")
                             }
-//                            print ((names as AnyObject).firstName!!)
-//                            print ((names as AnyObject).lastName!!)
+                            // print ((names as AnyObject).firstName!!)
+                            // print ((names as AnyObject).lastName!!)
                             mycount += 1
                         }
-                    }
+                    } // end of while loop
                     
                 }
             } // end of for data in getdata
@@ -263,7 +267,7 @@ class ViewController: UIViewController {
         } catch let error as NSError {
             print("Fetching error: \(error), \(error.userInfo)")
         }
-    }
+    } // end of caniknowUserfromAccount
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -280,7 +284,7 @@ class ViewController: UIViewController {
  let predicate1 = NSPredicate(format: "X == 1")
  let predicate2 = NSPredicate(format: "Y == 2")
  let predicateCompound = NSCompoundPredicate.init(type: .or, subpredicates: [predicate1,predicate2])
-
+ 
  Swift 3 - AND
  
  let predicate1 = NSPredicate(format: "X == 1")
