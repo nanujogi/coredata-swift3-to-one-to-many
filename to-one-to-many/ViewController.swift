@@ -209,13 +209,12 @@ class ViewController: UIViewController {
     
     /*
      Note: Easier approach for this is function already written above in ---> getalluserfromaccountdepartment()
-     Wanted to try to reach same thing via Account Entity & learnt to write below code.
+     Wanted to reach same thing via Account Entity & learnt to write below code.
      
      @NSManaged public var users: NSOrderedSet?
      To fetch the data from an NSORderedSet
      
-     Done now we have all the Users from Account Entity their first name & lastname
-     As of now settled with below code  for an specific department only.
+     Now we have all the Users from Account Entity their first name & lastname.
      */
     
     func caniknowUserfromAccount() {

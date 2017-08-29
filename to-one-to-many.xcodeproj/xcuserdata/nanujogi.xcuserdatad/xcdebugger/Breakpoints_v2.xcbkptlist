@@ -10,45 +10,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "to-one-to-many/ViewController.swift"
-            timestampString = "525504951.946407"
+            timestampString = "525695100.080725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "caniknowUserfromAccount()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "to_one_to_many.ViewController.caniknowUserfromAccount () -&gt; ()"
-                  moduleName = "to-one-to-many"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nanujogi/Desktop/remote/coredata-swift3-to-one-to-many/to-one-to-many/ViewController.swift"
-                  timestampString = "525505175.05259"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "253"
-                  endingLineNumber = "253"
-                  offsetFromSymbolStart = "6675">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "to_one_to_many.ViewController.caniknowUserfromAccount () -&gt; ()"
-                  moduleName = "to-one-to-many"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nanujogi/Desktop/remote/coredata-swift3-to-one-to-many/to-one-to-many/ViewController.swift"
-                  timestampString = "525505175.055126"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "253"
-                  endingLineNumber = "253"
-                  offsetFromSymbolStart = "7966">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -58,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "to-one-to-many/ViewController.swift"
-            timestampString = "525504253.522582"
+            timestampString = "525695100.080725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
             landmarkName = "caniknowUserfromAccount()"
             landmarkType = "7">
          </BreakpointContent>
